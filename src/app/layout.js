@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
         className={`bg-dark text-text-white ${inter.variable} ${righteous.variable} ${jost.variable} ${permanent_marker.variable}`}
       >
         <main className="relative lg:w-[50%] min-h-screen mx-auto px-2">
-          <header>
+          <header className="py-4">
             {" "}
             <Link href={"/"} className="font-permanent_marker text-2xl">
               <span className="text-light-green">Chess Lords</span>{" "}

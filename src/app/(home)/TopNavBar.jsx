@@ -13,7 +13,7 @@ export default function TopNavBar() {
     <ul className="font-inter flex gap-2">
       {links.map((item)=>{
         const isActive = pathname.endsWith(item.link)
-      return <li key={item.id} className={`capitalize flex-1 ${isActive? "border-light-green text-light-green": "border-dark-grey"} border-b text-center`}><Link href={item.link}>{item.name}</Link></li>
+      return <li key={item.id} className={`capitalize flex-1 ${isActive? "border-light-green text-light-green": "border-dark-grey"} border-b text-xl text-center`}><Link href={item.link}>{item.name}</Link></li>
       })}
     </ul>
   )

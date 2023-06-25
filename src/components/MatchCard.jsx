@@ -16,7 +16,7 @@ export default function MatchCard({ displayResult, user, setShowUpdateMatchModal
                 Update match
               </button>
             )}
-            <div className="flex justify-between text-light-green font-[500]">
+            <div className="flex justify-around text-light-green font-[500]">
               <span>Anderson</span> <span>vs</span> <span>Valentine</span>
             </div>
             {displayResult && <p className="text-xs">Anderson won by Checkmate</p>}
