@@ -1,13 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useId } from "react";
 import { addTeamToDB } from "@/services/firestoreFunction";
 import PopOver from "./PopOver";
 
 export default function PlayerDetails({ closePlayerDetailsDialog }) {
+  const id = useId()
   const [playerName, setPlayerName] = useState("")
   const handlePlayerConfirmDialog = (e) => {
     e.preventDefault();
-    const playerDetails = {playerName, games: 0, points: 0}
+    const playerDetails = {playerName, games: 0, points: 0, id}
     addTeamToDB(playerDetails)
       .then(() => {
         console.log("team added successfully");
