@@ -1,13 +1,28 @@
 "use client";
-import { useState, useRef, forwardRef } from "react";
+import { useState, useEffect } from "react";
+import { getAllPlayers } from "@/services/firestoreFunction";
+import useSWR from "swr"
 import PlayerCard from "@/components/PlayerCard";
 import Modal from "@/components/Modal";
 import PlayerDetails from "@/components/PlayerDetails";
 
 export default function Teams() {
+  const {data, error} = useSWR("teams", getAllPlayers)
   const [players, setPlayers] = useState([]);
+
+  // useEffect(() => {
+  //   getAllPlayers()
+  //     .then((data) => {
+  //       setPlayers(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
+
   const [showModal, setShowModal] = useState(false);
   const [showPlayerDetailsModal, setShowPlayersDetailsNodal] = useState(false);
+console.log(data);
   return (
     <section className="px-2 flex flex-col gap-2">
       <div className="flex items-center mt-4">
@@ -21,16 +36,17 @@ export default function Teams() {
         </button>
       </div>
       <section className="flex flex-col gap-2">
-        {Array.from({ length: 6 }, (item, index) => {
+        {data?.map((item, index) => {
           return (
             <PlayerCard
               key={index}
-              setPlayers={setPlayers}
+              name={item.playerName}
               setShowModal={setShowModal}
               setShowPlayersDetailsNodal={setShowPlayersDetailsNodal}
             />
           );
         })}
+
         {showModal && <Modal closeDialog={() => setShowModal(false)} />}
         {showPlayerDetailsModal && (
           <PlayerDetails closePlayerDetailsDialog={setShowPlayersDetailsNodal} />

@@ -1,11 +1,23 @@
 "use client";
-
+import { useState } from "react";
+import { addTeamToDB } from "@/services/firestoreFunction";
 import PopOver from "./PopOver";
 
 export default function PlayerDetails({ closePlayerDetailsDialog }) {
+  const [playerName, setPlayerName] = useState("")
   const handlePlayerConfirmDialog = (e) => {
     e.preventDefault();
-    closePlayerDetailsDialog();
+    const playerDetails = {playerName, games: 0, points: 0}
+    addTeamToDB(playerDetails)
+      .then(() => {
+        console.log("team added successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        closePlayerDetailsDialog();
+      });
   };
   return (
     <PopOver>
@@ -20,13 +32,15 @@ export default function PlayerDetails({ closePlayerDetailsDialog }) {
             autoComplete="off"
             required
             id="name"
+            value={playerName}
+            onChange={(e)=>setPlayerName(e.target.value)}
             className="outline-none border-2 h-[2.5rem] rounded-md pl-2 focus:border-light-green caret-light-green"
           />
           <div className="flex justify-end">
             <button
               type="button"
               className="h-[2.5rem] border-2 active:border-text-white w-[5rem] transition-colors duration-200 rounded-md hover:bg-dark-green bg-light-green text-text-white"
-            onClick={()=>closePlayerDetailsDialog(false)}
+              onClick={() => closePlayerDetailsDialog(false)}
             >
               Cancel
             </button>
