@@ -1,18 +1,50 @@
 "use client";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { checkUserSignedIn } from "@/services/firebaseAuthentication";
+import { auth } from "../../../services/firebase";
 export default function Login() {
+  const router = useRouter()
   const [loginValues, setLoginValues] = useState({
     email: "",
     password: "",
   });
 
+  useEffect(()=>{
+checkUserSignedIn().then((user)=>{
+  if(user){
+    router.push("/dashboard")  }
+}).catch((error)=>{
+
+})
+  }, [])
+
   const handleOchange = ({ target: { name, value } }) =>
     setLoginValues({ ...loginValues, [name]: value });
+
+
+
+
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      signInWithEmailAndPassword(auth, loginValues.email, loginValues.password)
+        .then((user) => {
+          router.push("/dashboard")
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {}
+  }
+
+
   return (
     <section className="shadow-match-card p-6 font-righteous min-h-full mt-8">
       <h2 className="text-2xl text-center text-light-green ">Login To Your Account</h2>
-      <form className="flex flex-col gap-4 items-center font-inter">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center font-inter">
         <div className="w-full flex flex-col">
           <label htmlFor="email">Email</label>
           <input
