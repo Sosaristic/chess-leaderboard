@@ -19,7 +19,7 @@ export default function Teams() {
 
       for (let i = 0; i < fixtures.length; i++) {
         const roundId = `week${i + 1}`;
-        const matchData = fixtures[i];
+        const matchData ={matches: fixtures[i]};
 
         await addScheduleToDB(tournamentId, roundId, matchData);
       }

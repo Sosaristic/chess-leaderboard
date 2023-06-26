@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, getDoc,  } from "firebase/firestore";
 import { db } from "./firebase";
 
 export async function addTeamToDB(teamData) {
@@ -22,16 +22,28 @@ export async function getAllPlayers(){
 
 }
 
-export async function addScheduleToDB(tournamentId, roundId, matchData){
+export async function addScheduleToDB( roundId, matchData){
   try {
-    const tournamentRef = collection(db, "tournaments").doc(tournamentId)
-const roundRef = tournamentRef.collection("rounds").doc(roundId)
-const matchesCollectionRef = roundRef.collection("matches")
-const docRef = await addDoc(matchesCollectionRef, matchData)
-console.log(`match data added to firestore with id: ${docRef.id}`);
+   const docRef = collection(db, "tournament", "rounds", roundId)
+   const dataId = await addDoc(docRef, matchData)
+   console.log(dataId.id);
   } catch (error) {
-    
+    console.log(error);
   }
 
 
+}
+
+export async function getScheduleFromDB(week){
+  try {
+    const docRef = collection(db, "tournament", "rounds", week)
+const docSnap =  await getDocs(docRef)
+const data = []
+docSnap.forEach((doc)=>{
+  data.push(doc.data())
+})
+return data
+  } catch (error) {
+    console.log(error);
+  }
 }

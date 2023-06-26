@@ -13,11 +13,25 @@ export const players = [
 ]
 
 export const weeks = [
-    {id:1, name: "week 1", value: 1},
-    {id:2, name: "week 2", value: 2},
-    {id:3, name: "week 3", value: 3},
-    {id:4, name: "week 4", value: 4},
-    {id:5, name: "week 5", value: 5},
-    {id:6, name: "week 6", value: 6},
+    {id:1, name: "Round 1", value: "week1"},
+    {id:2, name: "Round 2", value: "week2"},
+    {id:3, name: "Round 3", value: "week3"},
+    {id:4, name: "Round 4", value: "week4"},
+    {id:5, name: "Round 5", value: "week5"},
+    {id:6, name: "Round 6", value: "week6"},
+    {id:7, name: "Round 7", value: "week7"},
+    {id:8, name: "Round 8", value: "week8"},
+    {id:9, name: "Round 9", value: "week9"},
+    {id:10, name: "Round 10", value: "week10"},
+    {id:11, name: "Round 11", value: "week11"},
+    {id:12, name: "Round 12", value: "week12"},
+    {id:13, name: "Round 13", value: "week13"},
+    {id:14, name: "Round 14", value: "week14"},
+    {id:15, name: "Round 15", value: "week15"},
+    {id:16, name: "Round 16", value: "week16"},
+    {id:17, name: "Round 17", value: "week17"},
+
+
+
 
 ]
