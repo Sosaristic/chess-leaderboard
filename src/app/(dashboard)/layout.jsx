@@ -15,7 +15,7 @@ export default function DashboardLayout({ children }) {
         }
       })
       .catch((error) => {});
-  }, []);
+  }, [router]);
   return (
     <section>
       <Logout />

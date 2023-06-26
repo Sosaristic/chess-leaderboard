@@ -14,7 +14,7 @@ export default function Filter({setMatches}) {
     }).catch((error)=>{
       console.log(error);
     })
-  }, [selected])
+  }, [selected, setMatches])
   // console.log(data);
   console.log(selected);
   return (
