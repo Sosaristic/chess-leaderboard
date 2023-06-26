@@ -21,17 +21,23 @@ export default function LeaderBoard() {
             <th className="p-2">NO</th>
             <th>Name</th>
             <th>Games</th>
+<th>W</th>
+<th>D</th>
+<th>L</th>
             <th>Points</th>
           </tr>
         </thead>
         <tbody className="text-center capitalize text-lg ">
           {data?.map((player, index) => {
-            const { playerName, games, points } = player;
+            const { playerName, games, points, w, d, l } = player;
             return (
               <tr key={index} className="border border-light-green px-2">
                 <td className="p-2">{index+ 1}</td>
                 <td>{playerName}</td>
                 <td>{games}</td>
+<td>{w}</td>
+<td>{d}</td>
+<td>{l}</td>
                 <td>{points}</td>
 
               </tr>
