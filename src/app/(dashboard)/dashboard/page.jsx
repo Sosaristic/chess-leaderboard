@@ -15,13 +15,12 @@ export default function Teams() {
   const handleGenerateSchedule = () => {
     const fixtures = generateRoundRobinTeams(data);
     const loopFunction = async () => {
-      const tournamentId = "sundayomena2@gmail.com";
 
       for (let i = 0; i < fixtures.length; i++) {
         const roundId = `week${i + 1}`;
         const matchData ={matches: fixtures[i]};
 
-        await addScheduleToDB(tournamentId, roundId, matchData);
+        await addScheduleToDB(roundId, matchData);
       }
     };
 

@@ -38,4 +38,32 @@
       transform: rotate(360deg);
     }
   }
+
+/* list scroll bar */
+
+/* Hide the scroll bar but still enable scrolling */
+.list-box {
+  /* Hide the scroll bar */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+
+  /* Enable scrolling */
+  overflow: auto;
+}
+
+/* For WebKit based browsers (Chrome, Safari) */
+.list-box::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.list-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.list-box::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+
 }

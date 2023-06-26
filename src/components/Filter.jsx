@@ -5,18 +5,18 @@ import { weeks } from "./data";
 import useSWR from "swr";
 import { getScheduleFromDB } from "@/services/firestoreFunction";
 
-export default function Filter({setMatches}) {
+export default function Filter({setMatches, setRound}) {
   const [selected, setSelected] = useState(weeks[0]);
 
   useEffect(()=>{
     getScheduleFromDB(selected.value).then((data)=>{
       setMatches(data)
+      setRound(selected.name)
     }).catch((error)=>{
       console.log(error);
     })
   }, [selected, setMatches])
-  // console.log(data);
-  console.log(selected);
+ 
   return (
     <div>
       <Select listData={weeks} value={selected} onChange={(e) => setSelected(e)} name={"weeks"}/>

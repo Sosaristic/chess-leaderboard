@@ -16,7 +16,8 @@ export function generateRoundRobinTeams(teams) {
         
         roundFixtures.push({
           home: teams[home],
-          away: teams[away]
+          away: teams[away],
+          matchResult: null
         });
       }
       
