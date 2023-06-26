@@ -26,7 +26,7 @@ export default function MatchCard({
                   Update match
                 </button>
               )}
-              <div className="flex justify-around text-light-green font-[500]">
+              <div className="flex capitalize justify-around text-light-green font-[500]">
                 <span className="flex-1">{home.playerName}</span> <span className="flex-1">vs</span>{" "}
                 <span className="flex-1">{away.playerName}</span>
               </div>
