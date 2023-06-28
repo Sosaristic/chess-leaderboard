@@ -24,7 +24,7 @@ export default function LeaderBoard() {
 <th>W</th>
 <th>D</th>
 <th>L</th>
-            <th>Points</th>
+            <th>P</th>
           </tr>
         </thead>
         <tbody className="text-center capitalize text-lg ">
