@@ -17,7 +17,8 @@ export function generateRoundRobinTeams(teams) {
         roundFixtures.push({
           home: teams[home],
           away: teams[away],
-          matchResult: null
+          matchResult: null,
+          matchID: `match${match + 1}`
         });
       }
       
@@ -27,4 +28,11 @@ export function generateRoundRobinTeams(teams) {
     }
     
     return fixtures;
+  }
+
+
+  export function getAparticularMatch(id, data){
+const match = data.find((match)=>match.matchID == id)
+return match
+
   }

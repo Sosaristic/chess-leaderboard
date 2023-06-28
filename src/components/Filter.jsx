@@ -10,8 +10,9 @@ export default function Filter({setMatches, setRound}) {
 
   useEffect(()=>{
     getScheduleFromDB(selected.value).then((data)=>{
+      console.log(data);
       setMatches(data)
-      setRound(selected.name)
+      setRound(selected.value)
     }).catch((error)=>{
       console.log(error);
     })

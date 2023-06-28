@@ -14,13 +14,25 @@ export default function Teams() {
   const [showPlayerDetailsModal, setShowPlayersDetailsNodal] = useState(false);
   const handleGenerateSchedule = () => {
     const fixtures = generateRoundRobinTeams(data);
+    console.log(fixtures);
     const loopFunction = async () => {
-
+let weekMatches = []
       for (let i = 0; i < fixtures.length; i++) {
         const roundId = `week${i + 1}`;
-        const matchData ={matches: fixtures[i]};
+        const matchData ={...fixtures[i]};
+        const id = `match${i + 1}`
+        weekMatches.push(fixtures[i])
+        // await addScheduleToDB(roundId, matchData, id);
+      }
 
-        await addScheduleToDB(roundId, matchData);
+      for(let k = 0; k<weekMatches.length; k++){
+        const match = weekMatches[k]
+        const round = `round${k + 1}`
+        for(let j = 0; j<match.length; j++){
+         const matchID = `match${j + 1}`
+          await addScheduleToDB(round, matchID, match[j])
+        }
+        console.log(`round${k}`);
       }
     };
 

@@ -1,17 +1,21 @@
 export default function MatchCard({
   displayResult,
   user,
-  setShowUpdateMatchModal,
+  handleUpdateButton,
   matchesData,
   round,
-}) {
-  if (matchesData[0] != undefined) {
+})
+
+{
+
+
+  if (matchesData != undefined) {
     return (
       <div className="flex flex-col basis-full lg:basis-[45%] items-center shadow-lg font-jost flex-1">
         <p className="bg-dark-green w-full text-center capitalize">{round}</p>
 
-        {matchesData[0]?.matches?.map((item, index) => {
-          const { home, away, matchResult } = item;
+        {matchesData?.map((item, index) => {
+          const { home, away, matchResult, matchID } = item;
           return (
             <div
               key={index}
@@ -21,7 +25,7 @@ export default function MatchCard({
                 <button
                   type="button"
                   className="bg-light-green w-fit mx-auto px-2 py-1 rounded-md capitalize text-sm"
-                  onClick={() => setShowUpdateMatchModal(true)}
+                  onClick={() =>handleUpdateButton(matchID)}
                 >
                   Update match
                 </button>
@@ -30,7 +34,7 @@ export default function MatchCard({
                 <span className="flex-1">{home.playerName}</span> <span className="flex-1">vs</span>{" "}
                 <span className="flex-1">{away.playerName}</span>
               </div>
-              {displayResult && <p className="text-xs">{!matchResult? "Not played": "Anderson won"}</p>}
+              {displayResult && <p className="text-xs">{!matchResult? "Not played": matchResult.matchResult}</p>}
             </div>
           );
         })}

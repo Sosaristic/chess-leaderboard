@@ -5,7 +5,6 @@ import { getAllPlayers } from "@/services/firestoreFunction";
 export default function LeaderBoard() {
   const {data, error} = useSWR("teams", getAllPlayers)
 
-  console.log(data);
   if( error){
     return <div className="text-center mt-4">Error trying to get data</div>
   }

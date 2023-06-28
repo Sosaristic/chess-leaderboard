@@ -1,20 +1,33 @@
 "use client";
 import { useState } from "react";
 import PopOver from "@/components/PopOver";
+import { getAparticularMatch } from "@/utilities/helperFunction";
+import { UpdateMatchData } from "@/services/firestoreFunction";
 
-export default function UpdateMatchCard({setShowUpdateMatchModal}) {
-  const [result, setResult] = useState(0);
+export default function UpdateMatchCard({setShowUpdateMatchModal, matchData, matchID, round}) {
+  const [result, setResult] = useState(1);
+  const {home, away, id} = getAparticularMatch(matchID, matchData)
 
   const handleSetResult = (id) => {
     setResult(id);
   };
+  console.log(matchData);
+
+  const handleFormSubmit = (e)=>{
+e.preventDefault()
+UpdateMatchData(home, away, result, round, matchID).then((data)=>{
+console.log(data)
+}).catch((err)=>{
+  
+}).finally(()=>setShowUpdateMatchModal(false))
+  }
   return (
     <PopOver>
       <div className="bg-white text-text-grey w-full lg:w-[40%] flex flex-col items-center  pb-4 font-righteous">
         <h3 className="font-[600] bg-light-green text-white text-center py-1 w-full">
           Update Match
         </h3>
-        <form className="w-full flex flex-col items-center">
+        <form onSubmit={handleFormSubmit} className="w-full flex flex-col items-center">
           <p>Match result</p>
           <div className="flex w-full px-2 gap-1">
             <button
@@ -24,7 +37,7 @@ export default function UpdateMatchCard({setShowUpdateMatchModal}) {
               } w-1/3 flex-1 rounded-md  h-[2rem]`}
               onClick={() => handleSetResult(1)}
             >
-              Anderson
+              {home.playerName}
             </button>
             <button
               type="button"
@@ -42,7 +55,7 @@ export default function UpdateMatchCard({setShowUpdateMatchModal}) {
               } w-1/3 flex-1 rounded-md   h-[2rem]`}
               onClick={() => handleSetResult(3)}
             >
-              Valentine
+              {away.playerName}
             </button>
           </div>
           <div className="flex w-full justify-center gap-2">
